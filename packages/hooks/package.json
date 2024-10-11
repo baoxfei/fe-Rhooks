@@ -1,12 +1,23 @@
 {
-  "name": "hooks",
+  "name": "fe-rhooks",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./lib/index.d.ts",
+  "unpkg": "dist/encodeHooks.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "gulp && webpack-cli"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "js-cookie": "^3.0.5",
+    "lodash-es": "^4.17.21"
+  }
 }
