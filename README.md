@@ -32,8 +32,11 @@
 
   12. cookie 的操作 d.toGMTString
 
+## pnpm
+  1. 安装失败 node 不同版本原因
 
 ## todo
   1. 背书
   2. 一天两个个state useMount useUnMount useAsyncEffect useRequest useThrottle
   3. git actions
+  4. 多包环境下 tsconfig.json 和 包里的tsconfig.json

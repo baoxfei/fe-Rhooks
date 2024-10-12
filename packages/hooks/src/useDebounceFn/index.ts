@@ -1,14 +1,17 @@
-import { useMemo } from 'react';
-import { useMemoizedFn } from 'encodeHooks';
+import { useMemo, useRef, useEffect } from 'react';
 import type { DebounceOptions } from './debounceOptions';
-import { debounce } from 'lodash-es';
+// import { debounce } from 'lodash-es';
+import { debounce } from 'lodash';
 import { isDev } from '../utils/isDev';
 import { isFunction } from '../utils';
 import useLast from '../useLast';
 import useUnmount from '../useUnmount';
 type noop = (...args: any[]) => any;
 
-export default function <T extends noop>(fn: T, options?: DebounceOptions) {
+export default function useDebounceFn<T extends noop>(
+  fn: T,
+  options?: DebounceOptions
+) {
   if (isDev) {
     if (!isFunction(fn)) {
       console.error(
@@ -40,5 +43,25 @@ export default function <T extends noop>(fn: T, options?: DebounceOptions) {
     run: debouncedFn,
     cancel: debouncedFn.cancel,
     flush: debouncedFn.flush,
+  };
+}
+
+function useLiteDebounce(fn: () => void, wait, deps) {
+  const fnRef = useRef(fn);
+  const debounceFnRef = useRef<Function>();
+  const timer = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    timer.current = setTimeout(() => {
+      fn();
+      clearTimeout(timer.current);
+    }, wait);
+  }, deps);
+
+  return {
+    run: debounceFnRef.current,
   };
 }

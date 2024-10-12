@@ -1,11 +1,11 @@
 import { useMemoizedFn } from 'encodeHooks';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Cookie from 'js-cookie';
 import { isFunction, isString } from '../utils';
 import { isDev } from '../utils/isDev';
 
 type State = string | undefined;
-interface Options extends Cookie.CookieAttributes {
+export interface Options extends Cookie.CookieAttributes {
   defaultValue?: State;
 }
 // ! 获取可以使用() => 来初始化
@@ -26,9 +26,15 @@ export default function useCookieState(cookieKey: string, options?: Options) {
   });
 
   const updateState = useMemoizedFn(
-    (newValue: State | (() => State), newOptions: Options = {}) => {
-      const { defaultValue, ...restOptions } = { ...options, ...newOptions };
-      const value = isFunction(newValue) ? newValue() : newValue;
+    (
+      newValue?: State | ((v: State) => State),
+      newOptions: Cookie.CookieAttributes = {}
+    ) => {
+      const { defaultValue, ...restOptions } = {
+        ...options,
+        ...newOptions,
+      } as Options;
+      const value = isFunction(newValue) ? newValue(state) : newValue;
       setState(value);
       if (value === undefined) {
         Cookie.remove(cookieKey);
@@ -37,5 +43,5 @@ export default function useCookieState(cookieKey: string, options?: Options) {
       }
     }
   );
-  return [setState, updateState];
+  return [state, updateState] as const;
 }

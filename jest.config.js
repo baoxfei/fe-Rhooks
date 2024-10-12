@@ -10,6 +10,9 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }],
   },
+  moduleNameMapper: {
+    encodeHooks: '<rootDir>/packages/hooks/src/index.ts',
+  },
   collectCoverageFrom: [
     '<rootDir>/**/src/**/*.{js,jsx,ts,tsx}',
     '!**/demo/**',
