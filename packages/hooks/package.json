@@ -2,7 +2,6 @@
   "name": "fe-rhooks",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./lib/index.d.ts",
@@ -11,7 +10,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "gulp && webpack-cli"
+    "build": "gulp && webpack-cli",
+    "build:webpack": "webpack-cli"
   },
   "keywords": [],
   "author": "",

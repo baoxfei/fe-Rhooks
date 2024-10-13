@@ -11,7 +11,6 @@ async function genDesc(path) {
   }
   const file = fs.readFileSync(path, { encoding: 'utf-8' });
   const { content } = gm(file);
-  console.log(content, 'content');
   let description =
     (content
       .replace(/\r\n/g, '\n')
@@ -31,7 +30,6 @@ async function generateMataData() {
     .sync('src/use*', { onlyDirectories: true })
     .map((hook) => hook.replace('src/', ''))
     .sort();
-  console.log(hooks, 'hooks');
   await Promise.allSettled(
     hooks.map(async (hook) => {
       const desc = await genDesc(`src/${hook}/index.md`);

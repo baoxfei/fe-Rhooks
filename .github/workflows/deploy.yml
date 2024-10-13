@@ -21,7 +21,7 @@ jobs:
 
       - name: Build
         run: |
-          npm i pnpm -g
+          npm i pnpm@8 -g 
           pnpm run init
           pnpm run build:doc
 
@@ -30,4 +30,5 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: dist
-          ACCESS_TOKEN: ${{ secrets.SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+# 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
