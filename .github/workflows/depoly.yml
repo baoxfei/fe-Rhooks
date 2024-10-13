@@ -22,8 +22,7 @@ jobs:
           npm i -g pnpm@8
           pnpm run init
           pnpm run build:doc
-        env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
