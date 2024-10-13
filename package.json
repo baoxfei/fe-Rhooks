@@ -6,6 +6,9 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
+    "init": "pnpm install && pnpm run build",
+    "clean-dist": "rimraf './packages/**/{lib,es,dist,node_modules}'",
+    "clean": "pnpm run clean-dist && rimraf node_modules && rimraf dist",
     "start": "pnpm run dev",
     "dev": "dumi dev",
     "test": "jest",
