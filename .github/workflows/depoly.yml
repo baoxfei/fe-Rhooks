@@ -23,7 +23,12 @@ jobs:
           pnpm run init
           pnpm run build:doc
 
-
+  depoly:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
