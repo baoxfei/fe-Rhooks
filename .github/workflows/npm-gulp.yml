@@ -2,9 +2,9 @@ name: Build And Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   build:
@@ -12,25 +12,26 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: v16.19.0
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Lock npm version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.19.0
 
-    - name: Build
-      run: |
-        npm i -g pnpm
-        pnpm run init
-        pnpm run build:doc
+      - name: Build
+        run: |
+          npm i -g pnpm
+          pnpm run init
+          pnpm run build:doc
 
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.3
-      with:
-        BRANCH: gh-pages
-        FOLDER: dist
-        ACCESS_TOKEN: ${{ secrets.SECRET }}
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          BRANCH: gh-pages
+          FOLDER: dist
+          ACCESS_TOKEN: ${{ secrets.SECRET }}
