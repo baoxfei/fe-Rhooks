@@ -1,5 +1,5 @@
 {
-  "name": "fe-rhooks",
+  "name": "@bxf1234/fe-rhooks",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",

@@ -23,7 +23,7 @@ export default {
   mode: 'site',
   title: 'encode react hooks',
   favicon: '/avatar.png',
-  logo: '/logo.png',
+  // logo: '/logo.png',
 
   dynamicImport: {},
   manifest: {},

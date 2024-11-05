@@ -1,7 +1,7 @@
 ---
 title: 首页
 hero:
-  image: /short-logo.png
+  # image: /short-logo.png
   desc: react-test-hooks
   actions:
     - text: 指南
@@ -9,7 +9,6 @@ hero:
     - text: Hooks 列表
       link: /hooks
 ---
-
 
 ## ✨ 特性
 
